@@ -1,0 +1,4 @@
+pandas
+streamlit
+plotly>=5.0.0 # Plotly es bueno para gráficos interactivos y soporta temas oscuros.
+openpyxl # Necesario por pandas para leer/escribir archivos Excel, aunque aquí usamos CSV, es una dependencia común.
