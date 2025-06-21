@@ -271,8 +271,8 @@ else:
                 money_at_risk_df = calculate_money_at_risk(df_griegas_display.copy())
                 if not money_at_risk_df.empty:
                     fig_mar = px.bar(money_at_risk_df, x='Strike', y='MoneyAtRisk', title='Dinero en Riesgo por Strike',
-                                     labels={'MoneyAtRisk': 'Dinero en Riesgo ($)'},
-                                     hovertemplate='Strike: %{x}<br>Dinero en Riesgo: $%{y:,.0f}<extra></extra>')
+                                     labels={'MoneyAtRisk': 'Dinero en Riesgo ($)'}) # hovertemplate eliminado de aquí
+                    fig_mar.update_traces(hovertemplate='Strike: %{x}<br>Dinero en Riesgo: $%{y:,.0f}<extra></extra>') # hovertemplate movido aquí
                     fig_mar.update_layout(height=400, template="plotly_dark", yaxis_tickformat="$,.0f", xaxis_title="Strike")
                     if underlying_price != "N/A" and isinstance(underlying_price, (int, float)):
                         fig_mar.add_vline(x=underlying_price, line_width=2, line_dash="dash", line_color="grey", annotation_text="Precio Subyacente")
@@ -320,8 +320,8 @@ else:
                 if not vega_exposure_df.empty:
                     fig_vega = px.bar(vega_exposure_df, x='Strike', y='DealerVegaExposure', title='Exposición a Vega del Dealer por Strike',
                                       labels={'DealerVegaExposure': 'Exposición a Vega ($ por 1% cambio IV)'}, color='DealerVegaExposure',
-                                      color_continuous_scale=px.colors.diverging.Picnic,
-                                      hovertemplate='Strike: %{x}<br>Exposición Vega: $%{y:,.0f}<extra></extra>')
+                                      color_continuous_scale=px.colors.diverging.Picnic) # hovertemplate eliminado de aquí
+                    fig_vega.update_traces(hovertemplate='Strike: %{x}<br>Exposición Vega: $%{y:,.0f}<extra></extra>') # hovertemplate movido aquí
                     fig_vega.update_layout(height=400, template="plotly_dark", yaxis_tickformat="$,.0f", xaxis_title="Strike")
                     if underlying_price != "N/A" and isinstance(underlying_price, (int, float)):
                         fig_vega.add_vline(x=underlying_price, line_width=2, line_dash="dash", line_color="grey", annotation_text="Precio Subyacente")
@@ -341,8 +341,8 @@ else:
                 if not theta_exposure_df.empty:
                     fig_theta = px.bar(theta_exposure_df, x='Strike', y='DealerThetaExposure', title='Exposición a Theta del Dealer por Strike',
                                        labels={'DealerThetaExposure': 'Exposición a Theta ($ por día)'}, color='DealerThetaExposure',
-                                       color_continuous_scale=px.colors.diverging.Geyser,
-                                       hovertemplate='Strike: %{x}<br>Exposición Theta: $%{y:,.0f}<extra></extra>')
+                                       color_continuous_scale=px.colors.diverging.Geyser) # hovertemplate eliminado de aquí
+                    fig_theta.update_traces(hovertemplate='Strike: %{x}<br>Exposición Theta: $%{y:,.0f}<extra></extra>') # hovertemplate movido aquí
                     fig_theta.update_layout(height=400, template="plotly_dark", yaxis_tickformat="$,.0f", xaxis_title="Strike")
                     if underlying_price != "N/A" and isinstance(underlying_price, (int, float)):
                         fig_theta.add_vline(x=underlying_price, line_width=2, line_dash="dash", line_color="grey", annotation_text="Precio Subyacente")
